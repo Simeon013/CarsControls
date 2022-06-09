@@ -30,23 +30,17 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
-
-        <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="35dp"
-            android:layout_marginEnd="35dp"
-            app:cardBackgroundColor="@color/bluedark"
-            app:cardCornerRadius="13dp"
-            app:cardElevation="6dp"
-            app:cardPreventCornerOverlap="true"
-            app:cardUseCompatPadding="true">
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_gravity="center"
-                android:layout_margin="10dp"
-                android:orientation="vertical">
+        <Button
+            android:id="@+id/button"
+            android:layout_width="208dp"
+            android:layout_height="47dp"
+            android:layout_marginTop="32dp"
+            android:text="Take a picture"
+            app:icon="@android:drawable/ic_menu_camera"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
                 <ImageView
                     android:id="@+id/photo"
                     android:layout_width="270dp"
@@ -56,9 +50,25 @@
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/button"
-                    app:srcCompat="@drawable/ic_launcher_background" />
-            </LinearLayout>
-        </androidx.cardview.widget.CardView>
+                    app:srcCompat="@drawable/ic_launcher_background"
+                    android:layout_margin="65sp" />
+        <ScrollView
+            android:id="@+id/scrollView"
+            android:layout_width="406dp"
+            android:layout_height="331dp"
+            android:background="#7C7C7C"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="Hello."
+                android:textSize="20sp" />
+        </ScrollView>
     </LinearLayout>
 
     </ScrollView>
