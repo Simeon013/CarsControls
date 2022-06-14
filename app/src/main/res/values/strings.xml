@@ -23,6 +23,8 @@
     <string name="btn_logout">LOGOUT</string>
     <string name="btn_valider">Valider</string>
     <string name="name">Fullname</string>
+    <string name="immmatriculation_ex">AA 1234</string>
+    <string name="instruction">Entrez le numéro de la plaque immatriculation ou appuyez sur la touche pour lancer un scan.</string>
 
     <string name="about">About</string>
     <string name="profile">Profil</string>
@@ -78,4 +80,23 @@
     <string name="key_notifications_new_message_ringtone">key_notifications_new_message_ringtone</string>
     <string name="key_vibrate">key_vibrate</string>
     <string name="key_send_feedback">key_send_feedback</string>
+
+
+    <string-array name="title_list">
+        <item>AAAAAAAAA</item>
+        <item>BBBBBBBBB</item>
+        <item>CCCCCCCCC</item>
+        <item>DDDDDDDDD</item>
+        <item>EEEEEEEEE</item>
+        <item>FFFFFFFFF</item>
+    </string-array>
+
+    <string-array name="subtitle_list">
+        <item>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</item>
+        <item>bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb</item>
+        <item>cccccccccccccccccccccccccccccccccccccccccc</item>
+        <item>dddddddddddddddddddddddddddddddddddddddddd</item>
+        <item>eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee</item>
+        <item>ffffffffffffffffffffffffffffffffffffffffff</item>
+    </string-array>
 </resources>

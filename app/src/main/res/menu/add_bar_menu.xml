@@ -12,7 +12,7 @@
         android:title="@string/settings"
         app:showAsAction="ifRoom"/>
 
-    <item android:id="@+id/menu"
+    <item android:id="@+id/menuHistory"
         android:icon="@drawable/ic_menu"
         android:title="@string/historique"
         app:showAsAction="ifRoom"/>

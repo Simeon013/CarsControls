@@ -12,6 +12,7 @@ import android.widget.TextView;
 import androidx.appcompat.view.menu.ActionMenuItemView;
 import androidx.core.content.FileProvider;
 
+import com.example.carscontrols.MainActivity;
 import com.example.carscontrols.R;
 import com.example.carscontrols.helper.SQLiteHandler;
 import com.example.carscontrols.helper.SessionManager;
@@ -29,6 +30,7 @@ public class ProfileActivity extends Activity {
     private FloatingActionButton btnCapture;
     private ActionMenuItemView menuProfile;
     private ActionMenuItemView menuSettings;
+    private ActionMenuItemView menuHistory;
     private File photoFile;
 
     private SQLiteHandler db;
@@ -45,11 +47,12 @@ public class ProfileActivity extends Activity {
 
         photoFile = new File(directory, "photo.jpg");
 
-        txtNom = (TextView) findViewById(R.id.txtNom);
-        txtMatricule = (TextView) findViewById(R.id.txtMatricule);
-        txtPrenom = (TextView) findViewById(R.id.txtPrenom);
-        btnLogout = (Button) findViewById(R.id.btnLogout);
+        txtNom = findViewById(R.id.txtNom);
+        txtMatricule = findViewById(R.id.txtMatricule);
+        txtPrenom = findViewById(R.id.txtPrenom);
+        btnLogout = findViewById(R.id.btnLogout);
         btnCapture = findViewById(R.id.btnCapture);
+        menuHistory = findViewById(R.id.menuHistory);
         menuProfile = findViewById(R.id.menuProfile);
         menuSettings = findViewById(R.id.menuSettings);
 
@@ -90,7 +93,7 @@ public class ProfileActivity extends Activity {
 
             public void onClick(View view) {
                 Intent i = new Intent(getApplicationContext(),
-                        TestActivity.class);
+                        MainActivity.class);
                 startActivity(i);
                 finish();
             }
@@ -111,6 +114,16 @@ public class ProfileActivity extends Activity {
             public void onClick(View view) {
                 Intent i = new Intent(getApplicationContext(),
                         SettingsActivity.class);
+                startActivity(i);
+                finish();
+            }
+        });
+
+        menuHistory.setOnClickListener(new View.OnClickListener() {
+
+            public void onClick(View view) {
+                Intent i = new Intent(getApplicationContext(),
+                        HistoryActivity.class);
                 startActivity(i);
                 finish();
             }

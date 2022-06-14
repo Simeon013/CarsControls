@@ -15,6 +15,9 @@
     <color name="input_register">#888888</color>
     <color name="input_register_bg">#3b4148</color>
     <color name="input_register_hint">#5e6266</color>
+    <color name="input_imma_ex">#FFFFFF</color>
+    <color name="input_imma_ex_hint">#9E9E9E</color>
+    <color name="input_imma_ex_bg">#5BC2C2C2</color>
     <color name="btn_login">#26ae90</color>
     <color name="btn_login_bg">#eceef1</color>
     <color name="lbl_name">#333333</color>
@@ -28,5 +31,28 @@
     <color name="colorWhite">#FFFFFF</color>
     <color name="bluedark">#1C2B49</color>
     <color name="gris">#A8A8A8</color>
+    <color name="transparent">#00FFFFFF</color>
 
+    <string-array name="scan_serial_bg">
+        <item>#24c6d5</item>
+        <item>#57dd86</item>
+        <item>#ad7dcf</item>
+        <item>#ff484d</item>
+        <item>#fcba59</item>
+        <item>#24c6d5</item>
+    </string-array>
+
+    <string name="title">Cropper</string>
+    <string name="fixedAspectRatio">fixedAspectRatio =\u0020</string>
+    <string name="aspectRatioXHeader">aspectRatioX =\u0020</string>
+    <string name="aspectRatioYHeader">aspectRatioY =\u0020</string>
+    <string name="showGuidelines">showGuidelines =\u0020</string>
+    <string name="crop">Crop</string>
+    <string name="croppedImageDesc">The cropped image.</string>
+
+    <string-array name="showGuidelinesArray">
+        <item>Off</item>
+        <item>On Touch</item>
+        <item>On</item>
+    </string-array>
 </resources>
