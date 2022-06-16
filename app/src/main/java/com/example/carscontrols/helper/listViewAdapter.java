@@ -1,66 +1,65 @@
 package com.example.carscontrols.helper;
 
-import android.app.Activity;
+import android.app.LauncherActivity;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.ImageView;
 import android.widget.TextView;
-
-import androidx.annotation.NonNull;
-
-import com.example.carscontrols.R;
 
 import java.util.ArrayList;
 
 public class listViewAdapter extends BaseAdapter {
-    Activity context;
-    ArrayList<Model>arrayList;
+    private ArrayList<LauncherActivity.ListItem> listData;
+    private LayoutInflater layoutInflater;
 
-    public listViewAdapter(Activity context, ArrayList<Model> arrayList) {
-        this.context = context;
-        this.arrayList = arrayList;
-    }
-
-    public listViewAdapter(Context context, int[] img, int[] title, int[] subtitle) {
+    public listViewAdapter(Context aContext, ArrayList<LauncherActivity.ListItem> listData) {
+        this.listData = listData;
+        layoutInflater = LayoutInflater.from(aContext);
     }
 
     @Override
     public int getCount() {
-        return 0;
+        return listData.size();
     }
 
     @Override
     public Object getItem(int position) {
-        return null;
+        return listData.get(position);
     }
 
     @Override
     public long getItemId(int position) {
-        return 0;
+        return position;
     }
 
     @Override
-    public View getView(final int position, View view, @NonNull ViewGroup viewGroup) {
-        if (view == null){
-            LayoutInflater layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            view = layoutInflater.inflate(R.layout.list_row, viewGroup, false);
-        }
-        TextView titleText = view.findViewById(R.id.title);
-        TextView subTitleText = view.findViewById(R.id.subtitle);
-        ImageView imageView = view.findViewById(R.id.img);
-        
-        titleText.setText(arrayList.get(position).getName());
-        subTitleText.setText(arrayList.get(position).getSubtitle());
-        imageView.setImageResource(arrayList.get(position).getFlag());
-        
-        return view;
+    public View getView(int position, View convertView, ViewGroup parent) {
+        return null;
     }
 
-    //    @Override
-//    public View getView(int position, View convertView, ViewGroup parent) {
-//        return null;
-//    }
+/*    public View getView(int position, View v, ViewGroup vg) {
+        ViewHolder holder;
+        if (v == null) {
+            v = layoutInflater.inflate(R.layout.list_row, null);
+            holder = new ViewHolder();
+            holder.uName = (TextView) v.findViewById(R.id.name);
+            holder.uDesignation = (TextView) v.findViewById(R.id.designation);
+            holder.uLocation = (TextView) v.findViewById(R.id.location);
+            v.setTag(holder);
+        } else {
+            holder = (ViewHolder) v.getTag();
+        }
+        holder.uName.setText(listData.get(position).getName());
+        holder.uDesignation.setText(listData.get(position).getDesignation());
+        holder.uLocation.setText(listData.get(position).getLocation());
+        return v;
+    }*/
+
+    static class ViewHolder {
+        TextView uName;
+        TextView uDesignation;
+        TextView uLocation;
+    }
 }

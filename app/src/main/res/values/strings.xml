@@ -24,7 +24,7 @@
     <string name="btn_valider">Valider</string>
     <string name="name">Fullname</string>
     <string name="immmatriculation_ex">AA 1234</string>
-    <string name="instruction">Entrez le numéro de la plaque immatriculation ou appuyez sur la touche pour lancer un scan.</string>
+    <string name="instruction">Entrez le numéro de la plaque d\'immatriculation ou appuyez sur la touche pour lancer un scan.</string>
 
     <string name="about">About</string>
     <string name="profile">Profil</string>
@@ -80,6 +80,8 @@
     <string name="key_notifications_new_message_ringtone">key_notifications_new_message_ringtone</string>
     <string name="key_vibrate">key_vibrate</string>
     <string name="key_send_feedback">key_send_feedback</string>
+    <string name="non_valide">Attention ce véhicule n\'est pas en règle.</string>
+    <string name="valide">Ce véhicule est en règle sur tout les points.</string>
 
 
     <string-array name="SpinnerGrades">

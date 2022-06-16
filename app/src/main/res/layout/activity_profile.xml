@@ -129,7 +129,7 @@
                                 android:id="@+id/textView6"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="3658"
+                                android:text="20"
                                 android:textColor="@color/white"
                                 android:textSize="17sp" />
 
@@ -138,7 +138,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="5dp"
-                                android:text="Project"
+                                android:text="Vérification positives"
                                 android:textColor="@color/gris" />
                         </LinearLayout>
 
@@ -155,7 +155,7 @@
                                 android:id="@+id/textView8"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="7025"
+                                android:text="25"
                                 android:textColor="@color/white"
                                 android:textSize="17sp" />
 
@@ -164,7 +164,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="5dp"
-                                android:text="Follower"
+                                android:text="Vérifications"
                                 android:textColor="@color/gris" />
                         </LinearLayout>
 
@@ -179,7 +179,7 @@
                                 android:id="@+id/textView10"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="5087"
+                                android:text="5"
                                 android:textColor="@color/white"
                                 android:textSize="17sp" />
 
@@ -188,7 +188,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="5dp"
-                                android:text="Following"
+                                android:text="Vérifications négatives"
                                 android:textColor="@color/gris" />
                         </LinearLayout>
                     </LinearLayout>

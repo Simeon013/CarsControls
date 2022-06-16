@@ -31,6 +31,12 @@
         android:theme="@style/Theme.CarsControls"
         android:usesCleartextTraffic="true">
         <activity
+            android:name="com.example.carscontrols.resultat.ResultatInvalideActivity"
+            android:exported="false" />
+        <activity
+            android:name="com.example.carscontrols.resultat.ResultatValideActivity"
+            android:exported="false" />
+        <activity
             android:name="com.example.carscontrols.admin_activity.AdminProfileActivity"
             android:exported="false" />
         <!--

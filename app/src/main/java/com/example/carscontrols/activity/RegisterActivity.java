@@ -1,7 +1,10 @@
 package com.example.carscontrols.activity;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -42,7 +45,7 @@ public class RegisterActivity extends Activity {
     private EditText inputConf_password;
     private EditText inputGrade;
     private Spinner spinnerGrade;
-    String[] grade = {"User","Admin"};
+    String[] grade = {"user","admin"};
     private ProgressDialog pDialog;
     private SessionManager session;
     private SQLiteHandler db;
@@ -67,6 +70,7 @@ public class RegisterActivity extends Activity {
         spinnerGrade.setAdapter(arrayAdapter);
         btnRegister = (Button) findViewById(R.id.btnRegister);
         btnBack = (Button) findViewById(R.id.btnBack);
+        final Context context = this;
 
         // Progress dialog
         pDialog = new ProgressDialog(this);
@@ -99,12 +103,32 @@ public class RegisterActivity extends Activity {
                 String telephone = inputTelephone.getText().toString().trim();
                 String password = inputPassword.getText().toString().trim();
                 String conf_password = inputConf_password.getText().toString().trim();
-                String grade = inputGrade.getText().toString().trim();
+                String grade = spinnerGrade.getSelectedItem().toString().trim();
 
                 if (!matricule.isEmpty() && !nom.isEmpty() && !prenom.isEmpty() && !age.isEmpty()
                         && !telephone.isEmpty() && !password.isEmpty() && !conf_password.isEmpty() && !grade.isEmpty()) {
                     if (conf_password.equals(password)){
                         registerUser(matricule, nom, prenom, age, telephone, password, grade);
+
+                        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
+
+                        //set title
+                        alertDialogBuilder.setTitle("Ajout de nouvel utilisateur");
+
+                        //set dialog message
+                        alertDialogBuilder.setMessage("Un nouvel utilisateur a été ajouté avec succès...");
+                        alertDialogBuilder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int id) {
+                                dialog.cancel();
+                            }
+                        });
+
+                        //create alert dialog
+                        AlertDialog alertDialog = alertDialogBuilder.create();
+
+                        //show it
+                        alertDialog.show();
                     } else {
                         Toast.makeText(getApplicationContext(),
                                         "Les deux mot de passe diffèrent !!!", Toast.LENGTH_LONG)
@@ -145,7 +169,7 @@ public class RegisterActivity extends Activity {
 
         StringRequest strReq = new StringRequest(Method.POST,
                 AppConfig.URL_REGISTER, response -> {
-                    Log.d(TAG, "Register Response: " + response.toString());
+                    Log.d(TAG, "Ajout Response: " + response.toString());
                     hideDialog();
 
                     try {

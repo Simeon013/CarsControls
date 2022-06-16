@@ -1,6 +1,10 @@
 package com.example.carscontrols;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.ProgressDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -10,19 +14,19 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.SparseArray;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.view.menu.ActionMenuItemView;
 import androidx.core.content.FileProvider;
 import androidx.exifinterface.media.ExifInterface;
 
-import com.example.carscontrols.activity.HistoryActivity;
 import com.example.carscontrols.activity.LoginActivity;
 import com.example.carscontrols.activity.ProfileActivity;
-import com.example.carscontrols.activity.SettingsActivity;
 import com.example.carscontrols.admin_activity.AdminProfileActivity;
 import com.example.carscontrols.helper.SQLiteHandler;
 import com.example.carscontrols.helper.SessionManager;
@@ -43,7 +47,9 @@ public class MainActivity extends Activity {
     private ActionMenuItemView menuProfile;
     private ActionMenuItemView menuSettings;
     private EditText imma;
+    private Button verification;
     private File photoFile;
+    ProgressDialog progressDialog;
 
     private SQLiteHandler db;
     private SessionManager session;
@@ -62,9 +68,11 @@ public class MainActivity extends Activity {
         textView = findViewById(R.id.textView);
         imageView = findViewById(R.id.imageView);
         imma = findViewById(R.id.imma);
+        verification = findViewById(R.id.verif);
         menuHistory = findViewById(R.id.menuHistory);
         menuProfile = findViewById(R.id.menuProfile);
         menuSettings = findViewById(R.id.menuSettings);
+        final Context context = this;
 
         FloatingActionButton btnCapture = findViewById(R.id.btnCapture);
         btnCapture.setOnClickListener(v -> onTakePicture());
@@ -91,10 +99,29 @@ public class MainActivity extends Activity {
         menuHistory.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View view) {
-                Intent i = new Intent(getApplicationContext(),
+                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
+
+                //set title
+                alertDialogBuilder.setTitle("Historique");
+
+                //set dialog message
+                alertDialogBuilder.setMessage("Accès à l'onglet historique");
+                alertDialogBuilder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
+                    }
+                });
+
+                //create alert dialog
+                AlertDialog alertDialog = alertDialogBuilder.create();
+
+                //show it
+                alertDialog.show();
+                /*Intent i = new Intent(getApplicationContext(),
                         HistoryActivity.class);
                 startActivity(i);
-                finish();
+                finish();*/
             }
         });
 
@@ -118,10 +145,92 @@ public class MainActivity extends Activity {
         menuSettings.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View view) {
-                Intent i = new Intent(getApplicationContext(),
+                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
+
+                //set title
+                alertDialogBuilder.setTitle("Parametres");
+
+                //set dialog message
+                alertDialogBuilder.setMessage("Accès à l'onglet parametres");
+                alertDialogBuilder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
+                    }
+                });
+
+                //create alert dialog
+                AlertDialog alertDialog = alertDialogBuilder.create();
+
+                //show it
+                alertDialog.show();
+                /*Intent i = new Intent(getApplicationContext(),
                         SettingsActivity.class);
                 startActivity(i);
-                finish();
+                finish();*/
+            }
+        });
+
+
+        verification.setOnClickListener(new View.OnClickListener() {
+
+            public void onClick(View arg0) {
+                String plaque = imma.getText().toString().trim();
+                String mal = "BT 3562";
+                String bon = "AT 3562";
+                String Message ="";
+
+                if (!plaque.isEmpty()){
+                    if (plaque.equals(mal)) {
+                        Message = "Le véhicule n'est pas en règle.\nAssurance expirée.\nVisite technique expirée";
+                    }else if (plaque.equals(bon)){
+                        Message = "Le véhicule est en règle.";
+                    }
+                }else {
+                    // Prompt user to enter credentials
+                    Toast.makeText(getApplicationContext(),
+                                    "SVP!!! Veuillez entrer une valeur.", Toast.LENGTH_LONG)
+                            .show();
+                }
+
+                progressDialog = new ProgressDialog(MainActivity.this);
+
+                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
+
+                progressDialog.setMessage("Recherche...Veuillez patientez...");
+                progressDialog.show();
+                progressDialog.cancel();
+
+                //set title
+                alertDialogBuilder.setTitle("Vérification");
+
+                //set dialog message
+                alertDialogBuilder.setMessage(Message);
+                //alertDialogBuilder.setMessage(finalMessage);
+                alertDialogBuilder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
+                    }
+                });
+
+                //create alert dialog
+                AlertDialog alertDialog = alertDialogBuilder.create();
+
+                //show it
+                alertDialog.show();
+
+                /*if (imma.equals("AT 3562")) {
+                    Intent i = new Intent(getApplicationContext(),
+                            ResultatValideActivity.class);
+                    startActivity(i);
+                    finish();
+                }else if (imma.equals("BT 3562")){
+                    Intent i = new Intent(getApplicationContext(),
+                            ResultatInvalideActivity.class);
+                    startActivity(i);
+                    finish();
+                }*/
             }
         });
     }
