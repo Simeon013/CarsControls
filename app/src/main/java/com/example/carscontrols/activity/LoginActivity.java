@@ -14,19 +14,19 @@ import com.android.volley.Request.Method;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
-
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.util.HashMap;
-import java.util.Map;
-
+import com.example.carscontrols.AdminActivity;
 import com.example.carscontrols.MainActivity;
 import com.example.carscontrols.R;
 import com.example.carscontrols.app.AppConfig;
 import com.example.carscontrols.app.AppController;
 import com.example.carscontrols.helper.SQLiteHandler;
 import com.example.carscontrols.helper.SessionManager;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class LoginActivity extends Activity {
     private static final String TAG = RegisterActivity.class.getSimpleName();
@@ -46,7 +46,7 @@ public class LoginActivity extends Activity {
         inputMatricule = findViewById(R.id.matricule);
         inputPassword = findViewById(R.id.password);
         btnLogin = findViewById(R.id.btnLogin);
-        btnLinkToRegister = findViewById(R.id.btnLinkToRegisterScreen);
+//        btnLinkToRegister = findViewById(R.id.btnLinkToRegisterScreen);
 
         // Progress dialog
         pDialog = new ProgressDialog(this);
@@ -88,6 +88,7 @@ public class LoginActivity extends Activity {
         });
 
         // Link to Register Screen
+/*
         btnLinkToRegister.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View view) {
@@ -97,6 +98,7 @@ public class LoginActivity extends Activity {
                 finish();
             }
         });
+*/
 
     }
 
@@ -142,11 +144,19 @@ public class LoginActivity extends Activity {
                             // Inserting row in users table
                             db.addUser(matricule1, nom, prenom, age, telephone, grade);
 
-                            // Launch main activity
-                            Intent intent = new Intent(LoginActivity.this,
-                                    MainActivity.class);
-                            startActivity(intent);
-                            finish();
+                            if (grade.equals("admin")){
+                                // Launch admin activity
+                                Intent intent = new Intent(LoginActivity.this,
+                                        AdminActivity.class);
+                                startActivity(intent);
+                                finish();
+                            }else if (grade.equals("user")){
+                                // Launch main activity
+                                Intent intent = new Intent(LoginActivity.this,
+                                        MainActivity.class);
+                                startActivity(intent);
+                                finish();
+                            }
                         } else {
                             // Error in login. Get the error message
                             String errorMsg = jObj.getString("error_msg");

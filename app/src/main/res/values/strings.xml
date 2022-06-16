@@ -82,6 +82,11 @@
     <string name="key_send_feedback">key_send_feedback</string>
 
 
+    <string-array name="SpinnerGrades">
+        <item name="Admin">Admin</item>
+        <item name="User">User</item>
+    </string-array>
+
     <string-array name="title_list">
         <item>AAAAAAAAA</item>
         <item>BBBBBBBBB</item>

@@ -6,15 +6,17 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.android.volley.Request.Method;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
-import com.example.carscontrols.MainActivity;
+import com.example.carscontrols.AdminActivity;
 import com.example.carscontrols.R;
 import com.example.carscontrols.app.AppConfig;
 import com.example.carscontrols.app.AppController;
@@ -30,9 +32,7 @@ import java.util.Map;
 public class RegisterActivity extends Activity {
     private static final String TAG = RegisterActivity.class.getSimpleName();
     private Button btnRegister;
-    private Button btnLinkToLogin;
-    //private EditText inputFullName;
-    //private EditText inputEmail;
+    private Button btnBack;
     private EditText inputMatricule;
     private EditText inputNom;
     private EditText inputPrenom;
@@ -41,6 +41,8 @@ public class RegisterActivity extends Activity {
     private EditText inputPassword;
     private EditText inputConf_password;
     private EditText inputGrade;
+    private Spinner spinnerGrade;
+    String[] grade = {"User","Admin"};
     private ProgressDialog pDialog;
     private SessionManager session;
     private SQLiteHandler db;
@@ -57,9 +59,14 @@ public class RegisterActivity extends Activity {
         inputTelephone = (EditText) findViewById(R.id.telephone);
         inputPassword = (EditText) findViewById(R.id.password);
         inputConf_password = (EditText) findViewById(R.id.conf_password);
-        inputGrade = (EditText) findViewById(R.id.grade);
+        //inputGrade = (EditText) findViewById(R.id.grade);
+        spinnerGrade = findViewById(R.id.grade);
+        //spinnerGrade.setOnItemSelectedListener((AdapterView.OnItemSelectedListener) this);
+        ArrayAdapter arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, grade);
+        arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerGrade.setAdapter(arrayAdapter);
         btnRegister = (Button) findViewById(R.id.btnRegister);
-        btnLinkToLogin = (Button) findViewById(R.id.btnLinkToLoginScreen);
+        btnBack = (Button) findViewById(R.id.btnBack);
 
         // Progress dialog
         pDialog = new ProgressDialog(this);
@@ -72,13 +79,15 @@ public class RegisterActivity extends Activity {
         db = new SQLiteHandler(getApplicationContext());
 
         // Check if user is already logged in or not
-        if (session.isLoggedIn()) {
+/*        if (session.isLoggedIn()) {
             // User is already logged in. Take him to main activity
             Intent intent = new Intent(RegisterActivity.this,
                     MainActivity.class);
             startActivity(intent);
             finish();
-        }
+        }*/
+
+
 
         // Register Button Click event
         btnRegister.setOnClickListener(new View.OnClickListener() {
@@ -103,18 +112,18 @@ public class RegisterActivity extends Activity {
                         }
                 } else {
                     Toast.makeText(getApplicationContext(),
-                            "Please enter your details!", Toast.LENGTH_LONG)
+                            "Veuillez remplir toute les cases", Toast.LENGTH_LONG)
                             .show();
                 }
             }
         });
 
-        // Link to Login Screen
-        btnLinkToLogin.setOnClickListener(new View.OnClickListener() {
+        // Link to Admin Screen
+        btnBack.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View view) {
                 Intent i = new Intent(getApplicationContext(),
-                        LoginActivity.class);
+                        AdminActivity.class);
                 startActivity(i);
                 finish();
             }
@@ -131,7 +140,7 @@ public class RegisterActivity extends Activity {
         // Tag used to cancel the request
         String tag_string_req = "req_register";
 
-        pDialog.setMessage("Registering ...");
+        pDialog.setMessage("Ajout...");
         showDialog();
 
         StringRequest strReq = new StringRequest(Method.POST,
@@ -158,15 +167,15 @@ public class RegisterActivity extends Activity {
                             // Inserting row in users table
                             db.addUser(matricule1, nom1, prenom1, age1, telephone1, grade1);
 
-                            Toast.makeText(getApplicationContext(), "User successfully registered. Try login now!", Toast.LENGTH_LONG).show();
+                            Toast.makeText(getApplicationContext(), "L'utilisateur a été créé avec succès!!!", Toast.LENGTH_LONG).show();
                             String errorMsg = jObj.getString("error_msg");
                             Toast.makeText(getApplicationContext(),
                                     errorMsg, Toast.LENGTH_LONG).show();
-                            // Launch login activity
-                            Intent intent = new Intent(
-                                    RegisterActivity.this,
-                                    LoginActivity.class);
-                            startActivity(intent);
+
+                            // Launch Register activity
+                            Intent i = new Intent(getApplicationContext(),
+                                    RegisterActivity.class);
+                            startActivity(i);
                             finish();
                         } else {
 
@@ -184,13 +193,12 @@ public class RegisterActivity extends Activity {
 
             @Override
             public void onErrorResponse(VolleyError error) {
-                Log.e(TAG, "Registration Error: " + error.getMessage());
+                Log.e(TAG, "Eurreur : Ajout d'utilisateur " + error.getMessage());
                 Toast.makeText(getApplicationContext(),
                         error.getMessage(), Toast.LENGTH_LONG).show();
                 hideDialog();
             }
         }) {
-
             @Override
             protected Map<String, String> getParams() {
                 // Posting params to register url
@@ -205,7 +213,6 @@ public class RegisterActivity extends Activity {
 
                 return params;
             }
-
         };
 
         // Adding request to request queue

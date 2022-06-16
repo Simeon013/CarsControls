@@ -1,6 +1,5 @@
-package com.example.carscontrols.activity;
+package com.example.carscontrols.admin_activity;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -12,8 +11,12 @@ import android.widget.TextView;
 import androidx.appcompat.view.menu.ActionMenuItemView;
 import androidx.core.content.FileProvider;
 
+import com.example.carscontrols.AdminActivity;
 import com.example.carscontrols.MainActivity;
 import com.example.carscontrols.R;
+import com.example.carscontrols.activity.HistoryActivity;
+import com.example.carscontrols.activity.LoginActivity;
+import com.example.carscontrols.activity.SettingsActivity;
 import com.example.carscontrols.helper.SQLiteHandler;
 import com.example.carscontrols.helper.SessionManager;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -21,7 +24,8 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import java.io.File;
 import java.util.HashMap;
 
-public class ProfileActivity extends Activity {
+
+public class AdminProfileActivity extends AdminActivity {
 
     private TextView txtNom;
     private TextView txtMatricule;
@@ -31,6 +35,7 @@ public class ProfileActivity extends Activity {
     private ActionMenuItemView menuProfile;
     private ActionMenuItemView menuSettings;
     private ActionMenuItemView menuHistory;
+    private Button btnAdminMode;
     private File photoFile;
 
     private SQLiteHandler db;
@@ -39,7 +44,7 @@ public class ProfileActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_profile);
+        setContentView(R.layout.activity_admin_profile);
         File directory = new File(getFilesDir(), "photos");
         if (!directory.exists()) {
             directory.mkdir();
@@ -55,6 +60,7 @@ public class ProfileActivity extends Activity {
         menuHistory = findViewById(R.id.menuHistory);
         menuProfile = findViewById(R.id.menuProfile);
         menuSettings = findViewById(R.id.menuSettings);
+        btnAdminMode = findViewById(R.id.btnAdminMode);
 
 
         // SqLite database handler
@@ -90,10 +96,19 @@ public class ProfileActivity extends Activity {
 
 
         btnCapture.setOnClickListener(new View.OnClickListener() {
-
             public void onClick(View view) {
                 Intent i = new Intent(getApplicationContext(),
                         MainActivity.class);
+                startActivity(i);
+                finish();
+            }
+        });
+
+        btnAdminMode.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getApplicationContext(),
+                        AdminActivity.class);
                 startActivity(i);
                 finish();
             }
