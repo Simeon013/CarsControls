@@ -19,10 +19,11 @@ import androidx.appcompat.view.menu.ActionMenuItemView;
 import androidx.core.content.FileProvider;
 import androidx.exifinterface.media.ExifInterface;
 
-import com.example.carscontrols.activity.CobayeActivity;
+import com.example.carscontrols.activity.HistoryActivity;
 import com.example.carscontrols.activity.LoginActivity;
 import com.example.carscontrols.activity.ProfileActivity;
-import com.example.carscontrols.activity.TestActivity;
+import com.example.carscontrols.activity.SettingsActivity;
+import com.example.carscontrols.admin_activity.AdminProfileActivity;
 import com.example.carscontrols.helper.SQLiteHandler;
 import com.example.carscontrols.helper.SessionManager;
 import com.google.android.gms.vision.Frame;
@@ -81,11 +82,17 @@ public class MainActivity extends Activity {
         // Fetching user details from sqlite
         HashMap<String, String> user = db.getUserDetails();
 
+        String nom = user.get("nom");
+        String prenom = user.get("prenom");
+        String matricule = user.get("matricule");
+        String grade = user.get("grade");
+
+
         menuHistory.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View view) {
                 Intent i = new Intent(getApplicationContext(),
-                        CobayeActivity.class);
+                        HistoryActivity.class);
                 startActivity(i);
                 finish();
             }
@@ -94,10 +101,17 @@ public class MainActivity extends Activity {
         menuProfile.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View view) {
-                Intent i = new Intent(getApplicationContext(),
-                        ProfileActivity.class);
-                startActivity(i);
-                finish();
+                if (grade.equals("admin")){
+                    Intent i = new Intent(getApplicationContext(),
+                            AdminProfileActivity.class);
+                    startActivity(i);
+                    finish();
+                }else {
+                    Intent i = new Intent(getApplicationContext(),
+                            ProfileActivity.class);
+                    startActivity(i);
+                    finish();
+                }
             }
         });
 
@@ -105,7 +119,7 @@ public class MainActivity extends Activity {
 
             public void onClick(View view) {
                 Intent i = new Intent(getApplicationContext(),
-                        TestActivity.class);
+                        SettingsActivity.class);
                 startActivity(i);
                 finish();
             }

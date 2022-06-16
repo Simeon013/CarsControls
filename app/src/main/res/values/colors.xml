@@ -29,9 +29,12 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF5252</color>
     <color name="colorWhite">#FFFFFF</color>
+    <color name="blue">#003FBB</color>
     <color name="bluedark">#1C2B49</color>
     <color name="gris">#A8A8A8</color>
     <color name="transparent">#00FFFFFF</color>
+    <color name="admin_item_bg">#FFFFFF</color>
+    <color name="admin_text">#000000</color>
 
     <string-array name="scan_serial_bg">
         <item>#24c6d5</item>
