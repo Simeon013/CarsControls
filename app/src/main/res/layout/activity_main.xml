@@ -66,7 +66,8 @@
                     android:gravity="center"
                     android:textSize="30dp"
                     android:singleLine="true"
-                    android:inputType="text"
+                    android:inputType="textCapCharacters"
+                    android:maxLength="8"
                     android:textColor="@color/input_imma_ex"
                     android:textColorHint="@color/input_imma_ex_hint"
                     />

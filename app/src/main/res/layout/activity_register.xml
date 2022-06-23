@@ -26,6 +26,7 @@
             android:padding="10dp"
             android:singleLine="true"
             android:inputType="number"
+            android:maxLength="6"
             android:textColor="@color/input_register"
             android:textColorHint="@color/input_register_hint" />
 
@@ -36,7 +37,7 @@
             android:layout_marginBottom="10dp"
             android:background="@color/input_register_bg"
             android:hint="@string/hint_nom"
-            android:inputType="textPersonName"
+            android:inputType="textCapCharacters"
             android:padding="10dp"
             android:singleLine="true"
             android:textColor="@color/input_register"
@@ -49,7 +50,7 @@
             android:layout_marginBottom="10dp"
             android:background="@color/input_register_bg"
             android:hint="@string/hint_prenom"
-            android:inputType="textPersonName"
+            android:inputType="textCapSentences"
             android:padding="10dp"
             android:singleLine="true"
             android:textColor="@color/input_register"

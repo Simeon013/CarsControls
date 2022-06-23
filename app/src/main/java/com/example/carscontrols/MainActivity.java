@@ -176,22 +176,29 @@ public class MainActivity extends Activity {
 
             public void onClick(View arg0) {
                 String plaque = imma.getText().toString().trim();
-                String mal = "BT 3562";
+                String mal = "BF 5392";
                 String bon = "AT 3562";
+                String ass = "BG 0062";
+                String vt = "BX 3477";
                 String Message ="";
 
-                if (!plaque.isEmpty()){
+                if (!plaque.isEmpty()) {
                     if (plaque.equals(mal)) {
                         Message = "Le véhicule n'est pas en règle.\nAssurance expirée.\nVisite technique expirée";
-                    }else if (plaque.equals(bon)){
+                    } else if (plaque.equals(bon)) {
                         Message = "Le véhicule est en règle.";
+                    } else if (plaque.equals(ass)) {
+                        Message = "Le véhicule n'est pas en règle.\nAssurance expirée.";
+                            }  else if (plaque.equals(vt)) {
+                        Message = "Le véhicule n'est pas en règle.\nVisite technique expirée.";
+                                    }
+                } else {
+                        // Prompt user to enter credentials
+                        Toast.makeText(getApplicationContext(),
+                                        "SVP!!! Veuillez entrer une valeur.", Toast.LENGTH_LONG)
+                                .show();
                     }
-                }else {
-                    // Prompt user to enter credentials
-                    Toast.makeText(getApplicationContext(),
-                                    "SVP!!! Veuillez entrer une valeur.", Toast.LENGTH_LONG)
-                            .show();
-                }
+
 
                 progressDialog = new ProgressDialog(MainActivity.this);
 
